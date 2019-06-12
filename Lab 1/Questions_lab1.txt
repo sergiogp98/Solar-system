@@ -1,0 +1,77 @@
+1) Setup and getting acquainted with the lab shell
+
+- Where is the origin placed in the on-screen coordinate system?
+	In the middle of the screen. (0,0)
+
+- Which direction are the X and Y axes pointing in the on-screen coordinate system?
+	The X axes point to the RIGHT of the screen and the Y axe to the TOP of the screen.
+
+- The triangle color is controlled from the fragment shader. Would it be possible to control it from the main program? How?
+	Yes, with the built-in function glColor().
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2) Transformations in the vertex shader
+
+- What is the purpose of the "in", "out" and "uniform" modifiers?
+	- “in” are the inputs variables in the shaders:
+		Vertex shader: corresponds to the values in the generic vertex attribute array created in the main program
+		Fragment shader: corresponds to the output variables of the vertex shader
+	- “out” are the outputs variables in the shaders:
+		Vertex shader: corresponds to the input variables of the fragment shader
+		Fragment shader: corresponds to the input in the frame buffer
+	“uniform” is a constant value over an entire poligon and read-only for the shaders.
+
+- What is the output of the vertex shader?
+The input of the fragment shader.
+
+- What does the function glUniformMatrix4fv do?
+It specifies the number of matrices that are to be modified. The location of the uniform variable to be modified is specified by glGetUniformLocation.
+This function used to modify a matrix. The number 4 indicates a 4 × 4 matrix.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3) Simple animation
+
+- What is the frame rate of the animation?
+20 millisecs till next invocation  1000/20= 50 fps
+
+-------------------------------------------------------------------
+
+4) Color shading
+
+- Did you need to do anything different when uploading the color data?
+Yes, we had to pass them to an out variable in the vertex shader and as an in variable in the fragment shader
+
+- The "in" and "out" modifiers are now used for something different. What?
+Now they are used to set color to the vertices.
+
+- What is this kind of shading called? What could we use otherwise?
+Gourad shading.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5) Building a pyramid, visible surface detection
+
+- What problems did you encounter while building the pyramid?
+Vertices of the beside triangles must be repeated while defining them, because each triangle must be formed by 3 vertices.
+
+- How do you change the facing of a polygon?
+By the rotation matrix.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6) Load a 3D model from disc
+
+- Why do we need normal vectors for a model?
+Because they define the orientation of the surface, which is perpendicular to them, in the space. In particular, this orientation is relative to
+the light source
+
+- What did you do in your fragment shader?
+Pass the out variable (outColor) of the vertex shader as an in variable in the fragment shader and pass it to the frame buffer.
+
+- Should a normal vector always be perpendicular to a certain triangle? If not, why?
+No, it shouldn't, because the perpendicular surface to that normal vector may is not containing the triangle.
+
+- Now we are using glBindBuffer and glBufferData again. They deal with buffers, but in what way?
+glBindBuffer: activate (bound to the VAO) the VBO
+glBufferData: upload data to it

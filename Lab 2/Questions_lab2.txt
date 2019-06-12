@@ -1,0 +1,43 @@
+1) Procedural texture mapping
+
+- How are the textures coordinates mapped on the bunny? Can you see what geometry was used?
+    Using the fragment value which is a fucntion of S and T, in our case a sinus function of each, mapped onto the red and green color channels.
+- What kind of procedural texture did you make?
+    Solid texturing
+
+2) Texture mapping
+
+- How can you make a texture repeat multiple times over the bunny?
+    Muliplying outTexCoord
+- Why can't we just pass the texture object to the shader? There is a specific reason for this, a limited resource. What? (No, it is not that we must
+  avoid re-uploading from CPU. The texture object is on the GPU!)
+    Because texture access needs to perform interpolation and also perform automatic border checks. To do this efficiently, we need hardware that
+    suports it which is the texture units.
+
+3) Projection
+
+- How did you move the bunny to get it in view?
+    We modified the translation matrix since the one that was given to us (T(1, 2, 3)) put the bunny out of the frustum
+
+4) Viewing using the lookat function
+
+- Given a certain vector for v, is there some place you can't place the camera?
+    Yes, in the origin since you won't see anything
+
+5) Diffuse shading
+
+- Did you implement your light calculations in the vertex or fragment shader? So, which kind of shading did you implement?
+    In the fragment shader (Phong shader)
+- Some geometry data must be vec4, others are just as well vec3's. Which ones, and why? How about vertices, light source, normal vectors...?
+
+6) Extra: Gouraud vs Phong
+
+- Was the difference big? If not, why?
+    Gourad: Calculate shading value per vertex by dot product with light direction
+    Phong: Calculate shading value per fragment
+    They have practically the same operations, but in Phong shader, the light calculation are done in the fragment shader
+
+7) Building a scene + camera movement
+
+- If you rotate an object or rotate the camera, what matrices are affected?
+If we rotate an object, the model to world view should be modified. However, if we want to rotate the camera, we should rotate the rotation matrix

@@ -1,0 +1,32 @@
+1) Load and inspect the heightmap.
+- What kind of data does the heightmap image data hold? What range is the heightmap data?
+    Each pixel store values, such as surface elevation data. A heightmap contains one channel interpreted 
+    as a distance of displacement or “height” from the “floor”, with black representing minimum height and 
+    white representing maximum height.
+
+- The terrain is 4x4. How many polygons does it draw?
+    (3x3)x2=18 triangles (code line 44)
+
+2) Navigating the heightmap
+- Did you need to extend your camera movement code? How?
+    We just use the same method for the camera movement as we implemented in the previous lab. We have used
+    the glutKeyIsDown function.
+    
+3) Calculate normal vectors and apply lighting
+- Which method did you use to find the normal vector?
+    We picked neighbour vertices method
+
+4) Calculating map height for a point
+- How did you figure out what surface to use? 
+
+- How did you calculate the height from the surface?
+    I used the plane equation
+
+5) Multitexturing
+- What kind of multitexturing function did you implement?
+    I applied sin function
+
+6) Pick one of the "extras" below as final part of the lab.
+    6c) The lake [easy (with optional hard extensions)]
+    - How did you identify the water surface?
+        I initialized a global variable in the fragment shader for limiting the Y axis height of a pixel. If it is less than that, a paint it blue

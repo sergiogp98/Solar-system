@@ -1,0 +1,28 @@
+1) Hierarcical modelling, the windmill
+- How can you get all four blades to rotate with just one time-dependent rotation matrix?
+    With a rotation matrix around X axis
+
+- How do you make the wings follow the body's movements?
+    Rotating each one with the same rotation matrix
+
+2) Manual viewing controls
+- What kind of control did you implement?
+    Keyboard control
+- Can you make this kind of control in some other way than manipulating a "look-at" matrix?
+    Moving the models instead of the camera
+
+3) Virtual world and skybox
+- How did you handle the camera matrix for the skybox?
+    Making a translation matrix with the X and Z elements of the camera vector and a constant as Y element, in our case 2.7
+- How did you represent the objects? Is this a good way to manage a scene or would you do it differently for a "real" application?
+    I upload a model to world matrix for the skybox and a unique matrix for the rest of the elements. I think is a good way but better more construct with structs and classess
+- What special considerations are needed when rendering a skybox?
+    That fits all the scene so that yo dont see the background color. Dont see the edges of the images of the cube.
+- What is the problem with the skybox object used in the lab? (The problem doesn't have to be corrected.)
+    
+
+4) Specular shading, external light sources
+- How do you generate a vector from the surface to the eye?
+    Substracting the camera vector (where the camera is located) with the position vector of the element
+- Which vectors need renormalization in the fragment shader?
+    lightSourcesDirPosArr, ex_Normal and the eyeDirection
